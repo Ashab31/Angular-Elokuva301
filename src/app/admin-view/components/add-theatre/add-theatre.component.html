@@ -1,0 +1,28 @@
+<section class="add-theatre-cont mat-elevation-z8">
+  <form [formGroup]="filterForm" class="add" autocomplete="off" fxLayout="column">
+    <mat-form-field fxFlex="100">
+      <input required matInput formControlName="name" placeholder="Theatre Name">
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input required matInput id="place" #place formControlName="place" placeholder="Search Place">
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input required matInput formControlName="city" placeholder="City">
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <textarea required formControlName="address" matInput placeholder="Address"></textarea>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input required formControlName="geolocation" matInput  placeholder="Geo Location">
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <input required formControlName="seats" matInput type="number" placeholder="Seats">
+    </mat-form-field>
+    <div class="add-shows-cont">
+      <app-add-shows [label]="true" [value]="shows"></app-add-shows>
+    </div>
+    <div fxFlex="100">
+      <button mat-raised-button [disabled]="!filterForm.valid || shows?.length === 0" (click)="addTheatre()" color="primary">Add</button>
+    </div>
+  </form>
+</section>

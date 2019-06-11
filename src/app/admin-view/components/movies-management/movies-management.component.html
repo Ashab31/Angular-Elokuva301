@@ -1,0 +1,46 @@
+<section class="movies-management">
+  <section class="popup-header" fxLayout="row" fxLayoutAlign="end">
+    <button (click)="dialogRef.close()" class="close-icon" mat-icon-button>
+      <mat-icon role="img" aria-hidden="true">close</mat-icon>
+    </button>
+  </section>
+  <section class="movies-cont">
+    <div class="movies-header" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="title">Movies</div>
+      <div>
+        <button mat-raised-button color="primary" (click)="save('Movies')">Save</button>
+      </div>
+    </div>
+    <div class="movies-body">
+      <mat-form-field *ngIf="!isLoading" class="example-chip-list">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let fruit of fruits; let index = index;trackBy: trackByFn" [selectable]="selectable" [removable]="removable" (removed)="remove(index)">
+            {{fruit.title}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Add new movies .." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let fruit of filteredFruits;trackBy: trackByFn" [value]="fruit">
+            {{fruit.title}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div *ngIf="isLoading" class="movies-loading">Loading...</div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <section class="movies-cont">
+    <div class="movies-header" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="title">Shows</div>
+      <div>
+        <button mat-raised-button color="primary" (click)="save('Shows')">Save</button>
+      </div>
+    </div>
+    <div class="movies-body">
+      <app-add-shows [label]="false" [value]="shows"></app-add-shows>
+    </div>
+  </section>
+</section>

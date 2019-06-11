@@ -1,0 +1,58 @@
+<section class="booking-popup">
+  <section class="booking-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="info">
+      <div class="movie-name">
+        <span>{{movieTitle}}</span>
+      </div>
+      <div class="theatre-name">
+        <span>{{screen}} - {{time}}</span>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div class="seat-select-msg" *ngIf="selected.length">
+        {{selected.length}}
+        <span *ngIf="selected.length === 1">seat</span>
+        <span *ngIf="selected.length > 1">seats</span>
+        selected !
+      </div>
+      <div>
+        <button (click)="dialogRef.close()" class="close-icon" mat-icon-button>
+          <mat-icon role="img" aria-hidden="true">close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="booking-body" fxLayout="row" fxLayoutAlign="center">
+    <section class="screen-with-seat" fxLayout="column" fxFlex="660px">
+      <section class="screen-cont" fxLayout="row" fxLayoutAlign="center">
+        <svg class="screen" fxFlex="410px" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 262 22" id="icon-screen" width="100%"
+          height="100%">
+          <g fill="none" fill-rule="evenodd" opacity=".3">
+            <g fill="#E1E8F1">
+              <path id="da" d="M27.1 0h205.8L260 14.02H0z"></path>
+            </g>
+            <path stroke="#4F91FF" stroke-width=".65" d="M27.19.33L1.34 13.7h257.32L232.81.32H27.2z"></path>
+            <path fill="#8FB9FF" d="M28.16 2.97h203.86l17.95 9.14H10.35z"></path>
+            <g fill="#E3ECFA">
+              <path id="db" d="M0 13.88h260l-3.44 6.06H3.44z"></path>
+            </g>
+            <path stroke="#4F91FF" stroke-width=".65" d="M.56 14.2l3.07 5.41h252.74l3.07-5.4H.56z"></path>
+          </g>
+        </svg>
+      </section>
+      <section class="seat-arangement" fxLayout="row wrap">
+        <div *ngFor="let seat of seats" class="seat-box" [ngClass]="{selected: selected.indexOf(seat) > -1, reserved: reserved.indexOf(seat) > -1, 'seat-box-three': seat.length === 3}">
+          <span class="seat" (click)="seatClicked(seat)" [ngClass]="{'single-digit': seat.length === 1, 'double-digit': seat.length === 2, 'three-digit': seat.length === 3 }">{{seat}}</span>
+        </div>
+      </section>
+    </section>
+  </section>
+  <section *ngIf="selected.length > 0" class="booking-footer" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <button mat-raised-button (click)="clearSelected()">Clear</button>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="buyTickets()">Buy Tickets</button>
+    </div>
+  </section>
+</section>

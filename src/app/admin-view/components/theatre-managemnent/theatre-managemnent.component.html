@@ -1,0 +1,57 @@
+<section class="theatre-management">
+  <section class="controls" fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="20" class="search-cont">
+      <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="search">
+    </mat-form-field>
+    <section fxFlex="50" class="pagination-cont">
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </section>
+  </section>
+
+  <section class="theatre-results mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th class="table-id-th" mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td class="table-id-td" mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Seats Column -->
+      <ng-container matColumnDef="seats">
+          <th  class="table-id-th" mat-header-cell *matHeaderCellDef mat-sort-header> Seats </th>
+          <td  class="table-id-th" mat-cell *matCellDef="let row"> {{row.seats}} </td>
+        </ng-container>
+
+      <!-- City Column -->
+      <ng-container matColumnDef="city">
+        <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+        <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.city}} </td>
+      </ng-container>
+
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+          <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+          <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.address}} </td>
+        </ng-container>
+
+      <!-- Action Column -->
+      <ng-container matColumnDef="action">
+        <th class="table-action-th" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+        <td class="table-action-td" mat-cell *matCellDef="let row" >
+          <a href="javascript:void(0)" (click)="moviesManageDialog(row)">Detail</a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </section>
+</section>

@@ -1,0 +1,134 @@
+.header-icon {
+  padding: 0 14px 0 5px;
+  font-size: 30px;
+  margin-right: 10px;
+}
+.search-icon {
+  padding: 0 6px;
+  color: #999;
+}
+.searchText {
+  color: #999;
+  font-size: 16px;
+}
+.topNav {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+    0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  position: fixed;
+  z-index: 2;
+}
+.welcome-msg {
+  font-size: 10px;
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: right;
+}
+
+.logo {
+  border: 2px solid #70a898;
+  color: #70a999;
+  letter-spacing: 0.71px;
+  text-decoration: none;
+  padding: 5px 10px 5px 10px;
+  text-transform: uppercase;
+  margin-left: 40px;
+  background-color: white;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 64px !important;
+  padding: 13px 0 6px;
+  top: 0;
+}
+
+.user-logo {
+  img {
+    height: 65px;
+    outline: none;
+  }
+}
+
+.headerClass {
+  // background-color: #94ebf5;
+  // background: #5376bf;
+  padding: 4px 0 3px;
+}
+
+.searchContainer {
+  cursor: pointer;
+  border: 2px solid gray;
+  border-radius: 4px;
+  background-color: white;
+  width: 30%;
+  padding: 4px 0px;
+
+  .searchButton {
+    width: 50%;
+  }
+  .searchButton {
+    float: left;
+  }
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+}
+
+.userIcon {
+  transform: scale(1.5);
+  .header-icon {
+    height: 30px;
+  }
+}
+
+.mobile-search {
+  align-items: center;
+  display: flex;
+  margin-right: 0 !important;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+@media all and (min-width: 0px) and (max-width: 450px) {
+  .Logo {
+    width: 125px;
+  }
+  .header-icon {
+    font-size: 28px;
+  }
+  .search-icon {
+    font-size: 22px;
+  }
+  .searchText {
+    font-size: 15px;
+  }
+}
+.header-row {
+  justify-content: space-between;
+}
+
+#searchDialog {
+  top: 0;
+  position: absolute;
+  left: 0;
+  border-radius: 0;
+  margin-top: 5px;
+}
+.colorChange {
+  height: 55px;
+}
+
+#citySelection {
+  padding-top: 10px;
+}
+.themeChange {
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    font-size: 15px;
+  }
+}

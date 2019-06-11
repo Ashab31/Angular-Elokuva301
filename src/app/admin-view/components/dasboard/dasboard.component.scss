@@ -1,0 +1,59 @@
+.dashboard-cont {
+  padding: 20px;
+  background: #fff;
+  .box-card {
+    padding: 12px 20px;
+    color: #fff;
+    &:hover {
+      box-shadow: 0 3px 20px -1px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.14),
+        0 1px 8px 0 rgba(0, 0, 0, 0.12);
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-infix {
+      border-top: 0 !important;
+    }
+    .box-left {
+      .title-row {
+        font-size: 20px;
+      }
+      .sub-row {
+        padding-top: 8px;
+        .text {
+          &:first-child {
+            padding-bottom: 3px;
+          }
+        }
+      }
+    }
+    .card-icon {
+      font-size: 65px;
+    }
+  }
+  .users-card {
+    .box-card {
+      border-color: #2eadd3;
+      background-color: #63c2de;
+    }
+  }
+  .movies-card {
+    .box-card {
+      background: #f86c6b;
+      border-color: #f5302e;
+    }
+  }
+  .dashboard-graph {
+    .heading {
+      font-size: 25px;
+      padding-bottom: 15px;
+      width: 100%;
+      font-weight: 500;
+    }
+    .graph {
+      height: 300px;
+      width: 100%;
+    }
+  }
+}
+
+.canvasjs-chart-credit {
+  display: none !important;
+}

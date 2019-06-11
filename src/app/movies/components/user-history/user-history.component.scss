@@ -1,0 +1,57 @@
+.theatre-management {
+  margin: 80px 25px 25px;
+  table {
+    width: 100%;
+    .mat-form-field {
+      font-size: 14px;
+      width: 100%;
+    }
+  }
+  td .table-id-th,
+  .table-id-td {
+    width: 9%;
+  }
+  // .table-id-th,
+  // .table-id-td {
+  //   width: 8%;
+  // }
+  .table-city-th,
+  .table-city-td {
+    width: 15%;
+  }
+
+  .table-action-th,
+  .table-action-td {
+    padding-left: 40px;
+  }
+  .controls {
+    background: #fff;
+    margin-bottom: 10px;
+    padding: 10px 0 0 20px;
+    .search-cont {
+      height: 50px;
+      .mat-form-field-infix {
+        border-top: 7px solid transparent;
+      }
+    }
+    .pagination-cont {
+      height: 50px;
+    }
+  }
+  .mat-paginator {
+    background: none;
+  }
+  .theatre-results {
+    height: 420px;
+    overflow: auto;
+    background: #fff;
+  }
+}
+
+#moviesManageDialog {
+  top: 10px;
+  position: absolute;
+  left: 14%;
+  border-radius: 0;
+  width: 75%;
+}

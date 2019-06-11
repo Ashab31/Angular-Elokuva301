@@ -1,0 +1,21 @@
+.example-container {
+  position: absolute;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.side-nav {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0 rgba(0, 0, 0, 0.12),
+    0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.mat-drawer-content {
+  width: 100%;
+  background-color: #e9e9e9;
+}
+
+.main-content {
+  padding: 20px 20px 0;
+}

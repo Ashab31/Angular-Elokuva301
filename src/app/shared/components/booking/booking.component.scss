@@ -1,0 +1,89 @@
+.booking-popup {
+  .booking-header {
+    background: #343d4c;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    .info {
+      color: #fff;
+    }
+    .movie-name {
+      font-size: 16px;
+    }
+    .theatre-name {
+      font-size: 12px;
+    }
+    .seat-select-msg {
+      color: #fff;
+      padding-right: 15px;
+    }
+  }
+  .booking-body {
+    min-height: 250px;
+    padding: 70px 0 20px;
+    .screen-with-seat {
+      .screen-cont {
+        padding-top: 25px;
+        .screen {
+          transform: rotate(180deg);
+        }
+      }
+      .seat-arangement {
+        padding-top: 40px;
+        .seat-box {
+          padding-left: 10px;
+          padding-bottom: 24px;
+          .seat {
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.87);
+            border: 1px solid rgba(0, 0, 0, 0.87);
+            border-radius: 80px;
+            &.single-digit {
+              padding: 6px 11px 5px 12px;
+            }
+            &.double-digit {
+              padding: 6px 7px;
+            }
+            &.three-digit {
+              padding: 6px 3px;
+            }
+          }
+          &.selected {
+            .seat {
+              color: #5cb85c;
+              border: 1px solid #5cb85c;
+            }
+          }
+          &.reserved {
+            .seat {
+              cursor: no-drop;
+              color: #ce4844;
+              border: 1px solid #ce4844;
+            }
+          }
+        }
+        .seat-box-three {
+          padding-left: 9px;
+        }
+      }
+    }
+  }
+  .booking-footer {
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+    padding: 10px 40px 10px 25px;
+  }
+  .close-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -webkit-transform: translate3d(0, 0, 0);
+    background: #fff;
+    transform: translate3d(0, 0, 0);
+    &:hover {
+      transform: translate3d(0, -1px, 0);
+    }
+  }
+}

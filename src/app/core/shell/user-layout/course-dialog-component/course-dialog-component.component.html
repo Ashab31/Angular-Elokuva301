@@ -1,0 +1,15 @@
+<div class="container">
+  <section class="popup-header" fxLayout="row" fxLayoutAlign="end">
+    <button (click)="dialogRef.close()" class="close-icon" mat-icon-button>
+      <mat-icon role="img" aria-hidden="true">close</mat-icon>
+    </button>
+  </section>
+  <div class="heading">Please select your city</div>
+  <div class="cityList">
+    <ul class="list">
+      <li *ngFor="let city of cityList" [ngClass]="{'active': selectedItem == city}" (click)="selectedCity($event, city)">
+        {{ city }}
+      </li>
+    </ul>
+  </div>
+</div>

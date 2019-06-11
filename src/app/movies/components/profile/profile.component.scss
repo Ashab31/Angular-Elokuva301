@@ -1,0 +1,30 @@
+.profile-cont {
+  margin: 110px 25px 25px;
+  .toolbar {
+    .title {
+      font-size: 25px;
+    }
+  }
+  .preference-cont {
+    padding: 0 15px;
+    .preference-card {
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24), 0 0 2px rgba(0, 0, 0, 0.12);
+      margin: 4px;
+      .movies-header {
+        padding: 10px 20px;
+        color: rgba(0, 0, 0, 0.54);
+        background: rgba(0, 0, 0, 0.07);
+        .title {
+          font-size: 17px;
+        }
+      }
+      .movies-body {
+        padding: 20px 12px 0;
+        .example-chip-list {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

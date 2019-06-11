@@ -1,0 +1,33 @@
+.admin-header {
+  z-index: 12;
+  background: #607d8b;
+  height: 70px;
+  color: #fff;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  .logo-text {
+    font-family: serif;
+    font-size: 28px;
+  }
+  .logo-sub-text {
+    padding-left: 5px;
+    font-size: 11px;
+    top: 10px;
+    position: absolute;
+  }
+  .profile-icon {
+    transform: scale(1.6);
+  }
+  .profile-pic {
+    img {
+      width: 40px;
+      border-radius: 20px;
+    }
+  }
+  .user-name {
+    padding-left: 10px;
+    font-size: 14px;
+  }
+}

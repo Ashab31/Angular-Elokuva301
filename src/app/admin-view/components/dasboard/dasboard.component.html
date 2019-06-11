@@ -1,0 +1,68 @@
+<section class="dashboard-cont mat-elevation-z8">
+  <div class="outerContainer" fxLayout="column wrap">
+    <!-- Users and Movie cards -->
+    <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div class="users-card" fxFlex="45">
+        <mat-card class="box-card user-card">
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="box-left">
+                <div class="title-row">Users: {{users?.length}}</div>
+                <div class="sub-row">
+                  <div class="text">Admin users: {{adminUser?.length}}</div>
+                  <div class="text">Standard users: {{standardUser?.length}}</div>
+                </div>
+              </div>
+              <div>
+                <i class="material-icons card-icon">
+                  group
+                </i>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="movies-card" fxFlex="45">
+        <mat-card class="box-card">
+          <mat-card-content>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="box-left">
+                <div class="title-row">Movies</div>
+                <div class="sub-row">
+                  <div class="text">Now showing: {{nowShowingMoviesCount}}</div>
+                  <div class="text">Upcoming: {{upComingMoviesCount}}</div>
+                </div>
+              </div>
+              <div>
+                <i class="material-icons card-icon">
+                  movie_creation
+                </i>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <!-- Booking History -->
+    <div class="dashboard-graph booking-history" fxFlexOffset="10px" fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div class="heading">Booking History</div>
+      <div class="graph" id="bookingHistory"></div>
+    </div>
+    <!-- Theatres and Top Rated Movies-->
+    <div class="dashboard-graph theatres-graph" fxFlexOffset="35px" fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div fxFlex="48">
+        <div class="heading">Theatres</div>
+        <div class="graph" id="theatresGraph"></div>
+      </div>
+      <div fxFlex="48">
+        <div class="heading">Top Rated Movies</div>
+        <div class="graph" id="topRatedMovies"></div>
+      </div>
+    </div>
+    <!-- Popular Movies -->
+    <div class="dashboard-graph popular-graph" fxFlexOffset="30px" fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div class="heading">Top Popular Movies</div>
+      <div class="graph" id="popularMovies"></div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,9 @@
+<div class="up-coming-container">
+  <div fxLayout="row wrap" fxLayoutAlign="flex-start">
+    <ng-container *ngIf='movie$ | async as movies'>
+      <app-movie-list fxFlexOffset="29px" fxFlex="22" [type]="'upComing'" [detail]="movie" *ngFor="let movie of movies | moviesFilter: filterObj;trackBy: trackByFn"></app-movie-list>
+    </ng-container>
+    <mat-progress-bar *ngIf="bottomProgress" mode="indeterminate"></mat-progress-bar>
+    <div *ngIf="noMoreMovies" class="lastDiv">Sorry! No more movies to display.</div>
+  </div>
+</div>

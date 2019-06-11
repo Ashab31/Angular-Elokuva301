@@ -1,0 +1,10 @@
+// Define a mixin that accepts a theme and outputs the color styles for the component.
+@mixin filter-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: mat-get($theme, foreground);
+  .filterSection {
+    background-color: mat-color($accent);
+  }
+}

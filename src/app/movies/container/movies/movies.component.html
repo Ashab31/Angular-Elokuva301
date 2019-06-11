@@ -1,0 +1,12 @@
+<div class="movies-container">
+  <app-filter (change)="changeFilter($event)"></app-filter>
+  <mat-tab-group (selectedTabChange)="onTabChange($event)">
+    <mat-tab label="Now showing">
+      <template #nowShowingTemplate></template>
+    </mat-tab>
+
+    <mat-tab label="Up coming">
+      <template #upComingTemplate></template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

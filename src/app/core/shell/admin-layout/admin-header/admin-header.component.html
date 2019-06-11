@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <mat-toolbar-row class="admin-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <span class="logo-text">ELOKUVA</span>
+      <span class="logo-sub-text">Admin</span>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <ng-container *ngIf="userDetails | async as userDetail">
+        <div class="profile-icon" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon [matMenuTriggerFor]="menu" size="100" class="header-icon cursor-pointer">account_circle</mat-icon>
+        </div>
+        <!-- <div *ngIf="userDetail?.image" class="profile-pic" fxLayout="row" fxLayoutAlign="start center">
+          <img [matMenuTriggerFor]="menu" src="{{userDetail?.image}}"
+          />
+        </div> -->
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()" *ngIf="isAuth | async">Sign out</button>
+        </mat-menu>
+        <div class="user-name" fxLayout="row" fxLayoutAlign="start center">
+          <span>Welcome, {{userDetail.name}}</span>
+        </div>
+      </ng-container>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

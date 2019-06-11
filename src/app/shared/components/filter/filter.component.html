@@ -1,0 +1,30 @@
+<section class="filterSection">
+  <form [formGroup]="filterForm" class="" fxLayoutGap="60px" fxLayout="row" fxLayoutAlign="center">
+    <mat-form-field class="">
+      <input type="text" formControlName="language" placeholder="Language" aria-label="Number" matInput [matAutocomplete]="language">
+      <mat-autocomplete (optionSelected)="optionSelected($event)" autoActiveFirstOption #language="matAutocomplete">
+        <mat-option value="">-- Reset --</mat-option>
+        <mat-option *ngFor="let option of languageGroupOptions | async" [value]="option.label">
+          {{option.label}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="">
+      <input type="text" formControlName="genre" placeholder="Genre" aria-label="Number" matInput [matAutocomplete]="genre">
+      <mat-autocomplete (optionSelected)="optionSelected($event)" autoActiveFirstOption #genre="matAutocomplete">
+        <mat-option value="">-- Reset --</mat-option>
+        <mat-option *ngFor="let option of genreGroupOptions | async" [value]="option.label">
+          {{option.label}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="">
+      <input type="text" formControlName="distance" placeholder="Distance" aria-label="Number" matInput [matAutocomplete]="distance">
+      <mat-autocomplete autoActiveFirstOption #distance="matAutocomplete">
+        <mat-option *ngFor="let option of distanceGroupOptions | async" [value]="option.label">
+          {{option.label}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</section>

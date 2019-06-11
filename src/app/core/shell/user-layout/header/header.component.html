@@ -1,0 +1,46 @@
+<!--<div [class.alternativeTheme] = "otherTheme">-->
+<mat-toolbar fxLayout color="primary" class="topNav headerClass">
+  <mat-toolbar-row class="header-row">
+    <div fxLayout="row">
+      <span class="user-logo"><img routerLink="/users/movies" class="Logo cursor-pointer" src="./assets/images/elokuvaLogo.png" ></span>
+    </div>
+    <div (click)="searchDialog()" fxLayoutAlign="start stretch" fxHide fxShow.gt-xs fxLayout="row" fxLayoutGap="10px" class="searchContainer">
+      <span class="searchButton">
+        <div class="search-icon"><mat-icon class="search-icon">search</mat-icon><span class="searchText">Search for Movies</span></div>
+    </span>
+    </div>
+
+    <div fxLayoutAlign="start start" fxFlex="11" class="themeChange">
+      <mat-form-field  class="colorChange">
+        <mat-select placeholder="Change Theme" [(value)]="themes.value" (selectionChange)="onChange($event)" >
+          <mat-option  value="">default</mat-option>
+          <mat-option *ngFor="let theme of themes" [value]="theme.theme">
+            {{theme.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
+
+    <div fxLayoutAlign="center stretch" fxLayout="row wrap" fxLayoutGap="10px" class="userIcon">
+      <div class="mobile-search">
+        <mat-icon fxHide fxShow.lt-sm>search</mat-icon>
+      </div>
+        <div fxLayout="row">
+            <ng-container *ngIf="userDetails | async as userDetail; else notLogin">
+                <span class="welcome-msg" >Welcome, {{userDetail.name}}</span>
+            </ng-container>
+            <ng-template #notLogin>
+              <span class="welcome-msg">Welcome, Guest</span>
+            </ng-template>
+            <mat-icon [matMenuTriggerFor]="menu" size="100" class="header-icon cursor-pointer">account_circle</mat-icon>
+        </div>
+      <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/users/profile" *ngIf="isAuth | async">Profile</button>
+          <button mat-menu-item routerLink="/users/history" *ngIf="isAuth | async">History</button>
+        <button mat-menu-item (click)="logout()" *ngIf="isAuth | async">Sign out</button>
+        <button mat-menu-item (click)="login()" *ngIf="!(isAuth | async)">Sign in</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!--</div>-->

@@ -1,0 +1,36 @@
+@import '~@angular/material/theming';
+
+@import 'app/movies/container/movies/movies.component';
+@import 'app/shared/components/filter/filter.component';
+@include mat-core();
+
+$ng-app-primary: mat-palette($mat-teal);
+$ng-app-accent: mat-palette($mat-lime);
+
+$ng-app-warn: mat-palette($mat-red);
+
+$ng-app-theme: mat-light-theme($ng-app-primary, $ng-app-accent, $ng-app-warn);
+
+@include angular-material-theme($ng-app-theme);
+
+$indigo-primary: mat-palette($mat-indigo);
+$indigo-accent: mat-palette($mat-gray);
+$indigo-warn: mat-palette($mat-deep-orange);
+$indigo-theme: mat-light-theme($indigo-primary, $indigo-accent, $indigo-warn);
+
+$amber-primary: mat-palette($mat-amber);
+$amber-accent: mat-palette($mat-blue-gray);
+$amber-warn: mat-palette($mat-deep-orange);
+$amber-theme: mat-dark-theme($amber-primary, $amber-accent, $amber-warn);
+
+.LightTheme {
+  @include angular-material-theme($indigo-theme);
+  @include movies-theme($indigo-theme);
+  @include filter-theme($indigo-theme);
+}
+
+.DarkTheme {
+  @include angular-material-theme($amber-theme);
+  @include movies-theme($amber-theme);
+  @include filter-theme($amber-theme);
+}

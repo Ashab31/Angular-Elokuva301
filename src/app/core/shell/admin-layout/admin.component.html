@@ -1,0 +1,11 @@
+<app-admin-header></app-admin-header>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" fxFlex="220px" mode="side" opened>
+    <app-admin-side-nav></app-admin-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content class="side-nav-content">
+    <section class="main-content">
+      <router-outlet></router-outlet>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

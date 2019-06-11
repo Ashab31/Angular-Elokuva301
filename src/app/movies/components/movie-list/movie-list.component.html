@@ -1,0 +1,68 @@
+<mat-card class="movieCard">
+  <img mat-card-image routerLink="/users/detail" [queryParams]="{movieId: detail?.id,theatreId:theatreID,showDate: dateSelected,showTime: showTiming, theatreName: theaterSelected}"
+    class="movie-card-img" src="{{MOVIE_IMAGE_URL}}{{detail?.poster_path}}" onError="this.src='./assets/images/default_movie.png';"
+    alt="Photo of a movie">
+  <mat-card-content style="margin-bottom: 0;">
+    <div fxLayout="column" fxLayoutGap="4px">
+      <mat-card-title class="movie-title" matTooltip="{{detail?.title}}">{{ detail?.title }}</mat-card-title>
+      <div fxLayout="row">
+        <i class="material-icons rating-icon" *ngFor="let star of fullStar;trackBy: trackByFn">star</i>
+        <i class="material-icons rating-icon" *ngIf="halfStar">star_half</i>
+        <i class="material-icons rating-icon" *ngFor="let star of emptyStar;trackBy: trackByFn">star_border</i>
+        {{rating}} ({{detail?.vote_count}})
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px" class="cast-crew-cont">
+        <img fxFlex="11" fxFlex.md="13" fxFlexAlign="start" matTooltip="{{cast?.name}}" class="castImage" *ngFor="let cast of detail?.credits"
+          src="{{MOVIE_IMAGE_URL}}{{cast?.profile_path}}" onError="this.src='./assets/images/defaultCast.jpg';" alt="Cast and crew image">
+      </div>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div fxLayout="column" fxLayoutGap="5px" fxLayoutGap.md="8">
+      <mat-form-field style="height: 40px;" fxFlexOffset="10px">
+        <input matInput [min]="minDate" (dateChange)="addEvent($event)" [value]="dateSelected" [matDatepicker]="myDatepicker" placeholder="Choose Date">
+        <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field style="height: 40px;">
+        <mat-select (selectionChange)="onSelection($event)" [(value)]="defaultTheatre" [disabled]="!detail?.theatres?.length" placeholder="Choose Theatre">
+          <mat-option *ngFor="let theatre of detail.theatres | theatresSortOrder;trackBy: trackByFn" [value]="theatre">
+            {{theatre.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div flexLayout="row" fxLayoutAlign="start center">
+        <div>
+          <mat-icon fxLayoutAlign="start">access_time</mat-icon>
+        </div>
+        <div class="show-time-cont" fxFlexOffset="5px">
+          <div *ngIf="theaterSelected" fxLayoutAlign="center center">
+            <mat-button-toggle-group fxFlex="220px" (change)="onChnage($event)" appearance="legacy" #group="matButtonToggleGroup" name="showTimings"
+              aria-label="Font Style">
+              <ng-container *ngFor="let show of shows;trackBy: trackByFn">
+                <mat-button-toggle *ngIf="compareTime(show)" [value]="show">{{show}} </mat-button-toggle>
+              </ng-container>
+            </mat-button-toggle-group>
+          </div>
+          <div class="message" *ngIf="!theaterSelected" flexLayout="row" fxLayoutAlign="center center" fxLayoutGap="2px">
+            <div *ngIf="!theaterSelected && detail?.theatres?.length " class="showTimings"> Please choose a Theatre</div>
+            <div *ngIf="!detail?.theatres?.length " class="showTimings">Sorry! Movie is not running</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div flexLayout="row" fxLayoutAlign="space-between">
+        <button mat-raised-button color="primary" *ngIf="type=='nowShowing'" fxFlexAlign="start" class="bookButton" [disabled]="!theaterSelected  || !showTiming || !dateSelected"
+          (click)="openBooking()">BOOK</button>
+        <button mat-raised-button color="primary" *ngIf="type=='upComing'" fxFlexAlign="start" class="bookButton" [disabled]="!theaterSelected  || !showTiming || !dateSelected">PREBOOK</button>
+        <button style="margin:0" color="primary" mat-raised-button routerLink="/users/detail" [queryParams]="{movieId: detail?.id,theatreId:theatreID,showDate: dateSelected,showTime: showTiming}"
+          fxFlexAlign="end">
+          <i class="material-icons clock_icon ">redo</i>
+        </button>
+      </div>
+
+    </div>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,159 @@
+<section class="detail-cont">
+  <div class="body detail-container">
+    <div fxLayout='row' fxLayout.xs='column' fxLayoutGap="29px" fxLayoutGap.lt-sm="100px" class="detailRow">
+      <div fxFlex="33.3" class="row1">
+        <img src="{{MOVIE_IMAGE_URL}}{{movieDetails$?.poster_path}}" onError="this.src='./assets/images/default_movie.png';" alt="posterImage">
+      </div>
+      <div fxFlex="33.3" fxLayoutAlign="start" class="row2">
+        <div fxLayout='column' fxLayout.xs='column' fxLayoutGap.md="5px" fxLayoutGap.lt-sm="40px">
+          <div>
+            <h2 class="header">{{movieDetails$?.title}}</h2>
+          </div>
+          <div fxFlex="30" class="overview">
+            <div class="summar-title-txt">Overview</div>
+            <p>{{movieDetails$?.overview}}</p>
+          </div>
+          <div fxFlex="70" fxFlex.xs="100" class="social">
+            <div class="summar-title-txt">Social</div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <i class="material-icons rating-icon" *ngFor="let star of fullStar;trackBy: trackByFn">star</i>
+              <i class="material-icons rating-icon" *ngIf="halfStar">star_half</i>
+              <i class="material-icons rating-icon" *ngFor="let star of emptyStar;trackBy: trackByFn ">star_border</i>
+            </div>
+            <section class="socialReviews">
+              <mat-card>
+                <div class="section margin-top-15 flex-container">
+                  <a href="https://twitter.com/hashtag/{{hashTag(movieDetails$?.title)}}?src=hash" data-query-source="hashtag_click" class="PrettyLink hashtag customisable"
+                    dir="ltr" rel="tag" target="_blank" data-scribe="element:hashtag">
+                      <span class="PrettyLink-prefix">#</span>
+                      <span class="PrettyLink-value">{{hashTag(movieDetails$?.title)}}</span>
+                  </a>
+                </div>
+              </mat-card>
+
+              <mat-card>Every indian should watch it.</mat-card>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="33.3" class="row3">
+        <div id="map">
+          <agm-map [latitude]="latitude" [longitude]="longitude">
+            <agm-marker [latitude]="latitude" [longitude]="longitude" [label]="'T'">
+              <agm-info-window>
+                <strong>{{theaterSelected?.name}}</strong>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+        <a href="">Location Map</a>
+        <div class="button-row">
+          <button mat-fab class="fabuttons">
+            <mat-icon class="material-icons">star</mat-icon>
+            <!-- <class="material-icons">star</material-icons> -->
+          </button>
+          <button mat-fab class="fabuttons">
+            <mat-icon aria-label="favorite">favorite</mat-icon>
+          </button>
+          <button mat-fab class="fabuttons">
+            <mat-icon aria-label="bookmark.">bookmark</mat-icon>
+          </button>
+
+        </div>
+        <div flexLayout="row" fxLayoutGap="30px">
+          <mat-form-field fxFlex="50%" class="formInputs" style="height: 35px;">
+            <input autocomplete="off" matInput [matDatepicker]="myDatepicker" [(ngModel)]="shwDate" placeholder="Date" (dateInput)="addEvent('input', $event)">
+            <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex="50%" class="formInputs" style="height:35px;">
+            <mat-select placeholder="Theatres" (selectionChange)="theatreChnage()" [(value)]="theatreValue">
+              <mat-option class="matOptions" *ngFor="let theatre of theatresList;trackBy: trackByFn" [value]="theatre.id">
+                {{theatre.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div flexLayout="row" class="show-time-cont" fxLayoutAlign="start center">
+          <mat-icon fxLayoutAlign="start">access_time</mat-icon>
+          <div *ngIf="theaterSelected" class="times" flexLayout="row" fxFlexOffset="10px" fxLayoutAlign="space-between center">
+            <mat-button-toggle-group [(ngModel)]="showTimng" fxFlex="78" appearance="legacy" name="showTimings" aria-label="Font Style">
+              <mat-button-toggle *ngFor="let show of shows; trackBy: trackByFn" [value]="show" (change)="onChnage($event)">{{show}}</mat-button-toggle>
+            </mat-button-toggle-group>
+            <button mat-raised-button color="primary" [disabled]="!theaterSelected  || !shwDate || !showTimng" (click)="openBooking()">BOOK</button>
+          </div>
+          <div *ngIf="!theaterSelected" flexLayout="row" fxFlexOffset="10px" fxLayoutAlign="center center" fxLayoutGap="2px">
+            <div *ngIf="!theaterSelected && theatresList?.length " class="showTimings"> Please choose a Theatre</div>
+            <div *ngIf="!theatresList?.length " class="showTimings">Sorry! Movie is not running</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featuredCC">
+    <h2>Featured Cast And Crew</h2>
+    <div class="example-card" fxLayout="row" fxLayoutAlign="flex-start">
+      <mat-card matTooltip="{{castcrew?.name}}" fxFlex="18" fxFlexOffset="20px" *ngFor="let castcrew of castPluscrew;trackBy: trackByFn">
+        <img mat-card-image class="castImage" src="{{MOVIE_IMAGE_URL}}{{castcrew.profile_path}}" onError="this.src='./assets/images/user-default.jpg';"
+          alt="CastPhoto">
+        <mat-card-content>
+          <p class="role" *ngIf="castcrew.cast_id">{{castcrew.name}} as {{castcrew.character}}</p>
+          <p *ngIf="!castcrew.cast_id">{{castcrew.name}} as {{castcrew.department}}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <!-- cast profiles.........  -->
+  <div class="castProfiles" fxLayout="column">
+    <div class="summar-title-txt title-space">Cast</div>
+    <div ng2-carouselamos fxFlex="80" [width]="1000" [items]="casts" [$item]="itemTemplate" [$prev]="prevTemplate" [$next]="nextTemplate"></div>
+
+    <ng-template #prevTemplate>
+        <i class="material-icons">
+            keyboard_arrow_left
+            </i>
+    </ng-template>
+
+    <ng-template #nextTemplate>
+        <i class="material-icons">
+            keyboard_arrow_right
+            </i>
+    </ng-template>
+
+    <ng-template let-item let-i="index" #itemTemplate>
+      <div matTooltip="{{item?.name}}" class="slider-image" fxLayout="column">
+        <img fxFlex="100" src="{{MOVIE_IMAGE_URL}}{{item.profile_path}}" alt="CastPhoto" onError="this.src='./assets/images/user-default.jpg';"
+          height="250px">
+        <div class="tagline">{{item.name}} as {{item.character}}</div>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- crew profiles... -->
+  <div class="crewProfiles" fxLayout="column">
+    <div class="summar-title-txt title-space">Crew</div>
+    <div ng2-carouselamos [width]="1000" [items]="crews" [$item]="itemTemplate2" [$prev]="prevTemplate2" [$next]="nextTemplate2"></div>
+
+    <ng-template #prevTemplate2>
+      <i class="material-icons">
+        keyboard_arrow_left
+        </i>
+    </ng-template>
+
+    <ng-template #nextTemplate2>
+        <i class="material-icons">
+            keyboard_arrow_right
+            </i>
+    </ng-template>
+
+    <ng-template let-item let-i="index" #itemTemplate2>
+      <div matTooltip="{{item?.name}}" class="slider-image" fxLayout="column">
+        <img fxFlex="100" src="{{MOVIE_IMAGE_URL}}{{item.profile_path}}" onError="this.src='./assets/images/user-default.jpg';" alt="CrewImage"
+          height="250px">
+        <div class="tagline">{{item.name}} as {{item.department}}</div>
+      </div>
+    </ng-template>
+  </div>
+</section>
+

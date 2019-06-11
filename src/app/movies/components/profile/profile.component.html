@@ -1,0 +1,88 @@
+<section fxLayout="column" class="profile-cont">
+  <section fxLayout="row" fxLayoutAlign="space-between" class="toolbar">
+    <div class="title">Preferences Configuration</div>
+    <div>
+      <button mat-raised-button color="primary" (click)="onClickSaveAll()">Save all</button>
+    </div>
+  </section>
+  <section fxLayout="column" class="preference-cont">
+    <!-- Languages Section -->
+    <section fxLayout="column" class="preference-card" fxFlexOffset="35px">
+      <div class="movies-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title">Languages</div>
+        <div>
+          <button mat-raised-button color="primary" (click)="onClickSave('languages')">Save</button>
+        </div>
+      </div>
+      <div class="movies-body">
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipListLang>
+            <mat-chip *ngFor="let lang of languages; let index = index" [removable]="removable" (removed)="remove(index, languages)">
+              {{lang.english_name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add new languages .." #langInput [formControl]="langCtrl" [matAutocomplete]="autoLang" [matChipInputFor]="chipListLang"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+          </mat-chip-list>
+          <mat-autocomplete #autoLang="matAutocomplete" (optionSelected)="selected($event, languages, langCtrl, langInput)">
+            <mat-option *ngFor="let lang of filteredLanguages" [value]="lang">
+              {{lang.english_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </section>
+    <!-- Genres Section -->
+    <section fxLayout="column" class="preference-card" fxFlexOffset="30px">
+      <div class="movies-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title">Genres</div>
+        <div>
+          <button mat-raised-button (click)="onClickSave('genres')" color="primary">Save</button>
+        </div>
+      </div>
+      <div class="movies-body">
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipListGenre>
+            <mat-chip *ngFor="let genre of genres; let index = index" [removable]="removable" (removed)="remove(index, genres)">
+              {{genre.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add new genre .." #genreInput [formControl]="genreCtrl" [matAutocomplete]="autoGenre" [matChipInputFor]="chipListGenre"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+          </mat-chip-list>
+          <mat-autocomplete #autoGenre="matAutocomplete" (optionSelected)="selected($event, genres, genreCtrl, genreInput)">
+            <mat-option *ngFor="let genre of filteredGenres" [value]="genre">
+              {{genre.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </section>
+    <!-- Theatres Section -->
+    <section fxLayout="column" class="preference-card" fxFlexOffset="30px">
+      <div class="movies-header" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="title">Theatres</div>
+        <div>
+          <button mat-raised-button (click)="onClickSave('theatres')" color="primary">Save</button>
+        </div>
+      </div>
+      <div class="movies-body">
+        <mat-form-field  class="example-chip-list">
+          <mat-chip-list #chipListTheatre>
+            <mat-chip *ngFor="let theatre of theatres; let index = index" [removable]="removable" (removed)="remove(index, theatres)">
+              {{theatre.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Add new theatre .." #theatreInput [formControl]="theatreCtrl" [matAutocomplete]="autoTheatre" [matChipInputFor]="chipListTheatre"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+          </mat-chip-list>
+          <mat-autocomplete #autoTheatre="matAutocomplete" (optionSelected)="selected($event, theatres, theatreCtrl, theatreInput)">
+            <mat-option *ngFor="let theatre of filteredTheatres" [value]="theatre">
+              {{theatre.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </section>
+  </section>
+</section>

@@ -1,0 +1,18 @@
+// Define a mixin that accepts a theme and outputs the color styles for the component.
+@mixin movies-theme($theme) {
+  // Extract whichever individual palettes you need from the theme.
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $foreground: mat-get($theme, foreground);
+  .mat-tab-group {
+    background-color: mat-color($accent);
+  }
+}
+.movies-container {
+  margin: 85px 20px 0px 20px;
+  .mat-tab-group {
+    .mat-tab-body-wrapper {
+      padding-top: 25px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+<section class="theatre-management">
+  <section class="controls" fxLayout="row" fxLayoutAlign="space-between">
+    <mat-form-field fxFlex="18" class="search-cont">
+      <input matInput autocomplete="off" (keyup)="applyFilter($event.target.value)" placeholder="search">
+    </mat-form-field>
+    <section fxFlex="50" class="pagination-cont">
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </section>
+  </section>
+
+  <section class="theatre-results mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Movie title Column -->
+      <ng-container matColumnDef="Title">
+        <th class="table-id-th" mat-header-cell *matHeaderCellDef mat-sort-header> Movie Title </th>
+        <td class="table-id-td" mat-cell *matCellDef="let row"> {{row.movie}} </td>
+      </ng-container>
+
+      <!-- Theatre Name Column -->
+      <ng-container matColumnDef="Theatre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Theatre Name</th>
+        <td mat-cell *matCellDef="let row"> {{row.theatre}} </td>
+      </ng-container>
+
+      <!-- Booking Date Column -->
+      <ng-container matColumnDef="Date">
+          <th  class="table-id-th" mat-header-cell *matHeaderCellDef mat-sort-header> Booking Date </th>
+          <td  class="table-id-th" mat-cell *matCellDef="let row"> {{row.Date}} </td>
+        </ng-container>
+
+      <!-- Booking Time Column -->
+      <ng-container matColumnDef="Time">
+        <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> Booking Time </th>
+        <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.Time}} </td>
+      </ng-container>
+
+      <!-- Booked seats Column -->
+      <ng-container matColumnDef="Seats">
+          <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> Seats Booked </th>
+          <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.Seats}} </td>
+        </ng-container>
+        <!-- Payment Column -->
+      <ng-container matColumnDef="PaymentMethod">
+          <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> Payment method </th>
+          <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.payment}} </td>
+        </ng-container>
+           <!-- status Column -->
+         <ng-container matColumnDef="PaymentStatus">
+          <th  class="table-city-th" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
+          <td  class="table-city-td" mat-cell *matCellDef="let row"> {{row.PaymentStatus}} </td>
+        </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  </section>
+</section>

@@ -1,0 +1,62 @@
+<section class="search-popup">
+  <section fxLayout="row" fxLayoutAlign="space-between" class="header-cont">
+    <div class="search-box">
+      <mat-icon role="img" aria-hidden="true">search</mat-icon>
+      <input placeholder="Type and enter to search" type="search" [(ngModel)]="searchTerm" (keydown.enter)="getSearchResults(false)"
+      />
+    </div>
+    <div>
+      <button (click)="dialogRef.close()" class="close-icon" mat-icon-button>
+        <mat-icon role="img" aria-hidden="true">close</mat-icon>
+      </button>
+    </div>
+  </section>
+  <section class="filter-cont">
+    <app-filter (change)="changeFilter($event)"></app-filter>
+  </section>
+  <section fxLayout="row" *ngIf="!isLoading && !movies.length" fxLayoutAlign="center">
+    <mat-card class="no-message" fxFlex="30" fxLayoutAlign="center">
+      <section>Movies are not avaialbe with <b>"{{searchTerm}}"</b></section>
+    </mat-card>
+  </section>
+  <section class="results-group" #searchResults fxLayout="row wrap">
+    <ng-container *ngFor="let search of movies | moviesFilter: filterObj as filteredMovies;let index = index">
+      <section [ngStyle]="{'padding-top.px': index === 0? 2 : 15}" *ngIf="index === 0 || (filteredMovies[index - 1]?.original_language !== search.original_language)"
+        fxFlex="100%" class="group-header">
+        <div class="group-title">{{search.original_language | isoLanguage}}</div>
+        <mat-divider class="divider"></mat-divider>
+      </section>
+      <mat-card fxFlex="29" class="card">
+        <section class="card-body" fxLayout="row" fxLayoutAlign="space-between">
+          <section fxLayout="column" fxLayoutAlign="space-between">
+            <section>
+              <mat-card-title matTooltip="{{search?.title}}">{{search.title | slice:0:25}} {{search.title.length > 25 ? '...' : ''}}</mat-card-title>
+              <mat-card-subtitle>release date: {{search.release_date}}</mat-card-subtitle>
+              <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center" >genres:
+                <svg (click)="search.showGenres = true" style="width:19px;height:19px;padding-left: 5px;" viewBox="0 0 24 24">
+                <path fill="#000000" d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z" />
+              </svg>
+            </mat-card-subtitle>
+              <div class="show-genres" *ngIf="search.showGenres">
+                <div fxLayout="row" fxLayoutAlign="end">
+                  <mat-icon (click)="search.showGenres = false" role="img" aria-hidden="true">close</mat-icon>
+                </div>
+                <div>
+                    {{genresPipe(search.genre_ids)}}
+                </div>
+              </div>
+            </section>
+            <section>
+              <button mat-raised-button color="primary">Book</button>
+            </section>
+          </section>
+          <section class="card-img-cont">
+            <img src="{{MOVIES.MOVIE_IMAGE_URL}}{{search?.poster_path}}" onError="this.src='./assets/images/default_movie.png';" alt="{{search.title}}">
+          </section>
+        </section>
+      </mat-card>
+    </ng-container>
+  </section>
+  <mat-progress-bar *ngIf="bottomProgress" class="bottom-progress" mode="indeterminate"></mat-progress-bar>
+  <div *ngIf="noMoreMovies" class="lastDiv">Sorry! No more movies to display.</div>
+</section>
